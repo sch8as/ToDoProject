@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class TaskController extends Controller
         return view('task.index', compact('tasks'));
     }
 
-    public function store(Request $request) //TODO make new request
+    public function store(StoreTaskRequest $request)
     {
         $taskData = array_merge($request->all(), ["user_id" => Auth::id()]);
         Task::create($taskData);
